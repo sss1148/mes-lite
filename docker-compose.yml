@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mes-lite-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mes_lite
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - mysqldata:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: mes-lite-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysqldata:
